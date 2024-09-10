@@ -1,11 +1,17 @@
 import { IoAccessibilityOutline, IoInformationOutline, IoHeartOutline, IoListOutline, IoLockClosedOutline, IoPawOutline } from 'react-icons/io5';
-import { RequestInfo, WhiteCard } from '../../components';
-import { useAuthStore, useBearStore, usePersonStore } from '../../stores';
+import { 
+  // RequestInfo, 
+  WhiteCard } from '../../components';
+import { useAuthStore, useBearStore, usePersonStore, useTaskStore } from '../../stores';
 
 export const Dashboard = () => {
 
   const totalBears = useBearStore(state => state.totalBears);
   const firstName = usePersonStore(state => state.firstName);
+  const task = useTaskStore(state => state.tasks);
+
+  const taskCount = Object.keys(task).length;
+
 
   const userName = useAuthStore(state => state.user?.fullName || 'No user');
 
@@ -34,7 +40,7 @@ export const Dashboard = () => {
         <WhiteCard centered>
           <IoListOutline size={ 50 } className="text-indigo-600" />
           <h2>Tareas</h2>
-          <p>Información</p>
+          <p>{ taskCount }</p>
         </WhiteCard>
 
 
@@ -54,7 +60,9 @@ export const Dashboard = () => {
 
         <WhiteCard centered className='col-span-3'>
           <IoInformationOutline size={ 50 } className="text-indigo-600" />
-          <RequestInfo />
+          {/* <RequestInfo /> */}
+          <p>{userName}</p>
+
         </WhiteCard>
 
 
